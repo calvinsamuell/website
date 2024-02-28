@@ -6,7 +6,7 @@
       </div>
       <div class="col">
         <h3 class="text-white">Reccomendation</h3>
-        <Random />
+        <Random :id="id"/>
       </div>
     </div>
   </div>

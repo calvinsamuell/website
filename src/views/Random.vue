@@ -31,10 +31,11 @@
 
 <script>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 export default {
-  setup() {
+  props: ['id'],
+  setup(props) {
     const randomAnime = ref([]);
 
     const getRandomAnime = () => {
@@ -61,6 +62,12 @@ export default {
       );
       return randomAnime.value.slice(startIndex, startIndex + num);
     };
+
+    watch(() => props.id, (newValue, oldValue) => {
+      if (newValue !== oldValue) {
+        getRandomAnime();
+      }
+    });
 
     return {
       randomAnime,
