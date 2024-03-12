@@ -3,17 +3,21 @@
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="mb-3">
-          <button type="button" class="btn btn-primary"><router-link to="/login" class="nav-link text-white">Log in</router-link></button>
-          <button type="button" class="btn btn-primary"><router-link to="/register" class="nav-link text-white">Register</router-link></button>
+          <button type="button" class="btn btn-primary"><router-link to="/login" class="nav-link text-white">Log
+              in</router-link></button>
+          <button type="button" class="btn btn-primary"><router-link to="/register"
+              class="nav-link text-white">Register</router-link></button>
         </div>
         <form @submit.prevent="authUser">
           <div class="mb-3">
             <label for="exampleInputName" class="form-label text-white">Full Name</label>
-            <input type="text" class="form-control" id="exampleInputName" v-model="user.fullname" required aria-describedby="nameHelp">
+            <input type="text" class="form-control" id="exampleInputName" v-model="user.fullname" required
+              aria-describedby="nameHelp">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label text-white">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" v-model="user.email" required aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" v-model="user.email" required
+              aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label text-white">Password</label>
@@ -28,26 +32,26 @@
 
 
 <script>
-
-import { useAuthStore } from '@/store/Auth'
-import { ref } from 'vue';
+import { useAuthStore } from "@/store/Auth";
+import { ref } from "vue";
+import router from "@/router";
 
 export default {
-  setup(){
-    const user = ref({fullname: '', email: '', password: ''})
-
-    const authStore = useAuthStore()
+  setup() {
+    const user = ref({fullname: '', email: '', password: ''});
+    const authStore = useAuthStore();
 
     const authUser = () => {
-      authStore.addUser(user.value)
-      user.value = {fullname: '', email: '', password: ''}
-    }
+      authStore.addUser(user.value);
+      user.value = {fullname: '', email: '', password: ''};
+      router.push('/login');
+    };
 
-
-    return{ user, authUser, authStore}
+    return {
+      user,
+      authUser
+    };
   }
 };
 </script>
-
-<style>
-</style>
+<style></style>
